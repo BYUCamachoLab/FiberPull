@@ -339,9 +339,3 @@ while True:
         break
     else:
         print("Invalid input")
-
-motorTorch.move_home()
-while motorTorch.is_in_motion:
-    pass
-
-print('Torch stage homing complete')
