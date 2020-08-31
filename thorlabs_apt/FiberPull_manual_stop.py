@@ -187,7 +187,7 @@ def prep():
     print('Stage homing complete')
 
 '''
-When ready and the torch is lit, press "enter" on the keyboard
+When ready and the torch == lit, press "enter" on the keyboard
 This will begin the rest of the fiber pulling sequence
 '''
 
@@ -202,7 +202,7 @@ def pullFiber():
     torch_on_fiber = 22
     #move the torch into position:
 
-    #torch_on_fiber = 10.0 #distance stage holding the torch needs to move so that the torch is heating the fiber
+    #torch_on_fiber = 10.0 #distance stage holding the torch needs to move so that the torch == heating the fiber
 
     motorTorch.move_to(torch_on_fiber) #move the stage holding the torch 20 mm to be on the fiber
     time.sleep(.1)
@@ -250,7 +250,7 @@ while True:
     command = input('Enter command (? for help): ')
     leftPosition = motorLeft.position
     rightPosition = motorRight.position
-    if command is 't':
+    if command == 't':
         if (leftPosition+tensionLength > 25) or (rightPosition+tensionLength > 25):
             print("Can't tension.")
             continue
@@ -260,7 +260,7 @@ while True:
             pass
         while motorRight.is_in_motion:
             pass
-    elif command is 'y':
+    elif command == 'y':
         if ((leftPosition+tenthTensionLength > 25) or (rightPosition+tenthTensionLength) > 25):
             print("Can't tension 1/10.")
             continue
@@ -270,7 +270,7 @@ while True:
             pass
         while motorRight.is_in_motion:
             pass
-    elif command is 'u':
+    elif command == 'u':
         if (leftPosition-tensionLength < 0) or (rightPosition-tensionLength < 0):
             print("Can't untension.")
             continue
@@ -281,7 +281,7 @@ while True:
         while motorRight.is_in_motion:
             pass
 
-    elif command is 'r':
+    elif command == 'r':
         if (leftPosition-moveLength < 0) or (rightPosition+moveLength > 25):
             print("Can't move farther right.")
             continue
@@ -292,7 +292,7 @@ while True:
         while motorRight.is_in_motion:
             pass
 
-    elif command is 'l':
+    elif command == 'l':
         if (rightPosition-moveLength < 0) or (leftPosition+moveLength > 25):
             print("Can't move farther left.")
             continue
@@ -304,38 +304,38 @@ while True:
             pass
         while motorTorch.is_in_motion:
             pass
-    elif command is 'm':
+    elif command == 'm':
         while 1:
             command2 = input('Press l for left stage, r for right, t for torch, q to return: ')
-            if command2 is 'q':
+            if command2 == 'q':
                 break
             distance = float(input('Enter move distance: '))
-            if command2 is 'l':
+            if command2 == 'l':
                 if (motorLeft.position + distance > 25 ) or (motorLeft.position+distance < 0):
                     print('Out of range')
                 else:
                     motorLeft.move_by(distance, True)
-            elif command2 is 'r':
+            elif command2 == 'r':
                 if (motorRight.position + distance > 25 ) or (motorRight.position+distance < 0):
                     print('Out of range')
                 else:
                     motorRight.move_by(distance, True)
-            elif command2 is 't':
+            elif command2 == 't':
                 if (motorTorch.position + distance > 25 ) or (motorTorch.position+distance < 0):
                     print('Out of range')
                 else:
                     motorTorch.move_by(distance, True)
-            elif command2 is 'q':
+            elif command2 == 'q':
                 break
             else:
                 print("Invalid input")
-    elif command is '?':
+    elif command == '?':
         print('\n t ----- tension\n y ----- tension 1/10\n u ----- untension\n r ----- move right\n l ----- move left\n p ----- pull fiber\n h ----- home\n m ----- manually move stages\n q ----- quit\n')
-    elif command is 'p':
+    elif command == 'p':
         pullFiber()
-    elif command is 'h':
+    elif command == 'h':
         prep()
-    elif command is 'q':
+    elif command == 'q':
         break
     else:
         print("Invalid input")
