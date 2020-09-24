@@ -330,11 +330,13 @@ while True:
             else:
                 print("Invalid input")
     elif command == '?':
-        print('\n t ----- tension\n y ----- tension 1/10\n u ----- untension\n r ----- move right\n l ----- move left\n p ----- pull fiber\n h ----- home\n m ----- manually move stages\n q ----- quit\n')
+        print('\n t ----- tension\n y ----- tension 1/10\n u ----- untension\n r ----- move right\n l ----- move left\n p ----- pull fiber\n h ----- home\n m ----- manually move stages\n s ----- motor torch shortcut\n q ----- quit\n')
     elif command == 'p':
         pullFiber()
     elif command == 'h':
         prep()
+    elif command == 's':
+        motorTorch.move_to(24, True)
     elif command == 'q':
         break
     else:
